@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  </head>
+  <body>
+    <script>
+      window.TrelloPowerUp.initialize({
+        "board-buttons": function (t) {
+          return [
+            {
+              icon: {
+                dark: window.location.origin + "/images/link-icon-light.svg",
+                light: window.location.origin + "/images/link-icon-dark.svg",
+              },
+              text: "Smart Attachments",
+              callback: function (t) {
+                return t.popup({
+                  title: "Attachment Settings",
+                  url: "./index.html?view=settings",
+                  height: 550,
+                });
+              },
+            },
+          ];
+        },
+
+        "card-badges": function (t) {
+          return t.card("attachments").then(function (card) {
+            const count = card.attachments?.length || 0;
+
+            if (!count) return [];
+
+            return [
+              {
+                text: count + " attachments",
+                color: "orange",
+              },
+            ];
+          });
+        },
+
+        "card-detail-badges": function (t) {
+          return t.card("attachments").then(function (card) {
+            const attachments = card.attachments || [];
+
+            return attachments.map((att) => ({
+              title: att.name,
+              text: att.name,
+            }));
+          });
+        },
+      });
+    </script>
+  </body>
+</html>
