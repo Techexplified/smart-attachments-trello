@@ -25,28 +25,27 @@
           ];
         },
 
-        "card-badges": function (t) {
-          return t.card("attachments").then(function (card) {
-            const count = card.attachments?.length || 0;
+        // "card-badges": function (t) {
+        //   return t.card("attachments").then(function (card) {
+        //     const count = card.attachments?.length || 0;
 
-            if (!count) return [];
+        //     if (!count) return [];
 
-            return [
-              {
-                text: count + " attachments",
-                color: "orange",
-              },
-            ];
-          });
-        },
+        //     return [
+        //       {
+        //         text: count + " attachments",
+        //         color: "orange",
+        //       },
+        //     ];
+        //   });
+        // },
 
-        "card-detail-badges": (t) => {
+        "card-badges": (t) => {
           return t.card("attachments").then((card) => {
             const attachments = card.attachments || [];
             return attachments.map((att) => ({
               text: att.name,
               color: "orange",
-              callback: (t) => t.navigate({ url: att.url }),
             }));
           });
         },
