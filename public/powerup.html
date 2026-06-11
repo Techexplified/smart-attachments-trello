@@ -40,13 +40,13 @@
           });
         },
 
-        "card-detail-badges": function (t) {
-          return t.card("attachments").then(function (card) {
+        "card-detail-badges": (t) => {
+          return t.card("attachments").then((card) => {
             const attachments = card.attachments || [];
-
             return attachments.map((att) => ({
-              title: att.name,
               text: att.name,
+              color: "orange",
+              callback: (t) => t.navigate({ url: att.url }),
             }));
           });
         },
