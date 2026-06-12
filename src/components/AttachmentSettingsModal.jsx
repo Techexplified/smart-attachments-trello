@@ -58,8 +58,8 @@ export default function AttachmentSettingsModal() {
     COLORS.find((c) => c.name === settings.bgColor)?.hex ?? "#FF9F1A";
 
   return (
-    <div className="min-h-screen bg-[#1d2125] text-gray-100 font-sans">
-      <div className="px-5 py-4 space-y-5 overflow-y-auto max-h-[520px]">
+    <div className="bg-[#1d2125] text-gray-100 font-sans">
+      <div className="px-5 py-4 space-y-5">
         {/* ── Front of the card ──────────────────────────────────────── */}
         <Section title="Front of the card">
           <Checkbox
