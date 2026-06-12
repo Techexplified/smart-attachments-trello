@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { X, Paperclip, RotateCcw, Save } from "lucide-react";
 
 const COLORS = [
-  { name: "blue",   hex: "#0079BF" },
-  { name: "green",  hex: "#61BD4F" },
+  { name: "blue", hex: "#0079BF" },
+  { name: "green", hex: "#61BD4F" },
   { name: "orange", hex: "#FF9F1A" },
   { name: "purple", hex: "#C377E0" },
-  { name: "teal",   hex: "#00C2E0" },
-  { name: "red",    hex: "#EB5A46" },
-  { name: "gray",   hex: "#838C91" },
+  { name: "teal", hex: "#00C2E0" },
+  { name: "red", hex: "#EB5A46" },
+  { name: "gray", hex: "#838C91" },
 ];
 
 const DEFAULT_SETTINGS = {
@@ -59,27 +59,6 @@ export default function AttachmentSettingsModal() {
 
   return (
     <div className="min-h-screen bg-[#1d2125] text-gray-100 font-sans">
-      {/* ── Header ─────────────────────────────────────────────────── */}
-      <div className="flex items-start justify-between px-5 pt-5 pb-3 border-b border-white/10">
-        <div className="flex items-center gap-2.5">
-          <Paperclip size={18} className="text-blue-400 shrink-0 mt-0.5" />
-          <div>
-            <h2 className="text-sm font-semibold text-white leading-tight">
-              Attachment Display Settings
-            </h2>
-            <p className="text-xs text-gray-400 mt-0.5">
-              Choose how attachments appear on your cards.
-            </p>
-          </div>
-        </div>
-        <button
-          onClick={handleClose}
-          className="text-gray-500 hover:text-gray-200 transition-colors p-0.5 rounded"
-        >
-          <X size={16} />
-        </button>
-      </div>
-
       <div className="px-5 py-4 space-y-5 overflow-y-auto max-h-[520px]">
         {/* ── Front of the card ──────────────────────────────────────── */}
         <Section title="Front of the card">
@@ -127,8 +106,18 @@ export default function AttachmentSettingsModal() {
                   ))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-1.5 flex items-center">
-                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg
+                    className="w-3 h-3 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </div>
               </div>
@@ -149,8 +138,18 @@ export default function AttachmentSettingsModal() {
                   }`}
                 >
                   {settings.bgColor === c.name && (
-                    <svg className="w-4 h-4 text-white mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    <svg
+                      className="w-4 h-4 text-white mx-auto"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   )}
                 </button>
@@ -170,12 +169,13 @@ export default function AttachmentSettingsModal() {
               {settings.showIcon || settings.showName ? (
                 <div
                   className="flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded w-fit"
-                  style={{ backgroundColor: selectedColor + "33", color: selectedColor }}
+                  style={{
+                    backgroundColor: selectedColor + "33",
+                    color: selectedColor,
+                  }}
                 >
                   {settings.showIcon && <Paperclip size={11} />}
-                  {settings.showName && (
-                    <span>Product-Screenshot.png</span>
-                  )}
+                  {settings.showName && <span>Product-Screenshot.png</span>}
                   {settings.showCount && (
                     <span className="ml-1 bg-white/20 rounded px-1 text-[10px]">
                       2
