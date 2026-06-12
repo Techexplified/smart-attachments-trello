@@ -27,6 +27,14 @@ export default function AttachmentSettingsModal() {
   const [saved, setSaved] = useState(false);
   const t = window.TrelloPowerUp ? window.TrelloPowerUp.iframe() : null;
 
+  useEffect(() => {
+    if (!t) return;
+
+    t.render(() => {
+      t.sizeTo(document.body);
+    });
+  }, []);
+
   // Load persisted settings from Trello storage
   useEffect(() => {
     if (!t) return;
