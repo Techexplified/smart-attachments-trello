@@ -15,9 +15,10 @@
               },
               text: "Smart Attachments",
               callback: function (t) {
-                return t.popup({
-                  title: "Attachment Settings",
+                return t.modal({
                   url: "./index.html?view=settings",
+                  fullscreen: false,
+                  title: "Attachment Display Settings",
                 });
               },
             },
