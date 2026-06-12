@@ -40,14 +40,24 @@
         //   });
         // },
 
-        "card-badges": (t) => {
-          return t.card("attachments").then((card) => {
-            const attachments = card.attachments || [];
-            return attachments.map((att) => ({
-              text: att.name,
-              color: "orange",
-            }));
-          });
+        "card-badges": async (t) => {
+          const [card, settings] = await Promise.all([
+            t.card("attachments"),
+            t.get("board", "shared", "smartAttachmentSettings"),
+          ]);
+
+          const attachments = card.attachments || [];
+
+          if (!attachments.length) {
+            return [];
+          }
+
+          const badgeColor = settings?.bgColor || "orange";
+
+          return attachments.map((att) => ({
+            text: att.name,
+            color: badgeColor,
+          }));
         },
       });
     </script>

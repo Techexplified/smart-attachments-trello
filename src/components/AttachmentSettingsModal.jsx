@@ -62,6 +62,8 @@ export default function AttachmentSettingsModal() {
     try {
       if (t) {
         await t.set("board", "shared", "smartAttachmentSettings", settings);
+
+        await t.closePopup();
       }
 
       setSaved(true);
