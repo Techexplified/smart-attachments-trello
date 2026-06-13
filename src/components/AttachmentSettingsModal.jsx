@@ -4,36 +4,46 @@ import { Paperclip, RotateCcw, Save } from "lucide-react";
 const COLORS = [
   {
     name: "blue",
-    bg: "#1D7AFC33",
-    text: "#579DFF",
+    bg: "#123263",
+    text: "#b6cae9",
   },
   {
     name: "green",
-    bg: "#216E4E",
-    text: "#A6F4C5",
+    bg: "#164b35",
+    text: "#a3dcc3",
   },
   {
     name: "orange",
-    bg: "#A54800",
-    text: "#FFD5B8",
+    bg: "#693200",
+    text: "#e3c68b",
   },
   {
     name: "purple",
-    bg: "#5E4DB2",
-    text: "#DFC0FF",
+    bg: "#48245d",
+    text: "#edd6fb",
   },
   {
-    name: "teal",
+    name: "red",
+    bg: "#5d1f1a",
+    text: "#eec1bf",
+  },
+  {
+    name: "pink",
+    bg: "#943D73",
+    text: "#FFDAF6",
+  },
+  {
+    name: "lime",
+    bg: "#4C6B1F",
+    text: "#D3F1A7",
+  },
+  {
+    name: "sky",
     bg: "#206A83",
     text: "#9DD9EE",
   },
   {
-    name: "red",
-    bg: "#AE2E24",
-    text: "#FFD5D2",
-  },
-  {
-    name: "gray",
+    name: "light-gray",
     bg: "#596773",
     text: "#DEE4EA",
   },
