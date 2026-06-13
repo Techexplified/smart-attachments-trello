@@ -46,7 +46,9 @@
             t.get("board", "shared", "smartAttachmentSettings"),
           ]);
 
+          const attachments = card.attachments || [];
           const hiddenTypes = settings?.hiddenTypes || [];
+          const badgeColor = settings?.bgColor || "orange";
 
           const visibleAttachments = attachments.filter((att) => {
             const ext = att.name.split(".").pop().toLowerCase();
