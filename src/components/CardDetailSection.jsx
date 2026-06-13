@@ -30,17 +30,11 @@ export default function CardDetailSection() {
     );
   }
 
-  const isVideo = (name = "") =>
-    /\.(mp4|webm|mov|avi|mkv)$/i.test(name);
+  const isVideo = (name = "") => /\.(mp4|webm|mov|avi|mkv)$/i.test(name);
 
   const visible = attachments.filter((att) => {
-    if (settings.filterByType && settings.typeFilter) {
-      const patterns = settings.typeFilter
-        .split(",")
-        .map((p) => p.trim().replace("*.", "").toLowerCase());
-      const ext = att.name.split(".").pop().toLowerCase();
-      if (!patterns.includes(ext)) return false;
-    }
+    const ext = att.name.split(".").pop().toLowerCase();
+    if ((settings.hiddenTypes || []).includes(ext)) return false;
     if (settings.showVideoInside === false && isVideo(att.name)) return false;
     return true;
   });

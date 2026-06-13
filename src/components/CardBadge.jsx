@@ -23,21 +23,26 @@ export default function CardBadge() {
     });
   }, []);
 
-  if (!settings || attachments.length === 0) return null;
+  const visibleAttachments = attachments.filter((att) => {
+    const ext = att.name.split(".").pop().toLowerCase();
+    return !(settings?.hiddenTypes || []).includes(ext);
+  });
+
+  if (!settings || visibleAttachments.length === 0) return null;
 
   const COLOR_MAP = {
-    blue:   "#0079BF",
-    green:  "#61BD4F",
+    blue: "#0079BF",
+    green: "#61BD4F",
     orange: "#FF9F1A",
     purple: "#C377E0",
-    teal:   "#00C2E0",
-    red:    "#EB5A46",
-    gray:   "#838C91",
+    teal: "#00C2E0",
+    red: "#EB5A46",
+    gray: "#838C91",
   };
 
   const hex = COLOR_MAP[settings.bgColor] ?? "#FF9F1A";
-  const showIcon  = settings.showIcon  !== false;
-  const showName  = settings.showName  !== false;
+  const showIcon = settings.showIcon !== false;
+  const showName = settings.showName !== false;
   const showCount = settings.showCount === true;
 
   return (
@@ -48,10 +53,10 @@ export default function CardBadge() {
           style={{ backgroundColor: hex + "33", color: hex }}
         >
           {showIcon && <Paperclip size={11} />}
-          {attachments.length}
+          {visibleAttachments.length}
         </span>
       ) : (
-        attachments.map((att) => (
+        visibleAttachments.map((att) => (
           <span
             key={att.id}
             className="flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded truncate max-w-[160px]"

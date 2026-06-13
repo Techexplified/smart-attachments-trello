@@ -46,15 +46,18 @@
             t.get("board", "shared", "smartAttachmentSettings"),
           ]);
 
-          const attachments = card.attachments || [];
+          const hiddenTypes = settings?.hiddenTypes || [];
 
-          if (!attachments.length) {
+          const visibleAttachments = attachments.filter((att) => {
+            const ext = att.name.split(".").pop().toLowerCase();
+            return !hiddenTypes.includes(ext);
+          });
+
+          if (!visibleAttachments.length) {
             return [];
           }
 
-          const badgeColor = settings?.bgColor || "orange";
-
-          return attachments.map((att) => ({
+          return visibleAttachments.map((att) => ({
             text: att.name,
             color: badgeColor,
           }));

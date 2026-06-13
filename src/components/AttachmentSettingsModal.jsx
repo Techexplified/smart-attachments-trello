@@ -49,15 +49,35 @@ const COLORS = [
   },
 ];
 
+const FILE_TYPES = [
+  "jpg",
+  "jpeg",
+  "png",
+  "gif",
+  "webp",
+  "pdf",
+  "doc",
+  "docx",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "mp4",
+  "mov",
+  "avi",
+  "webm",
+  "zip",
+  "txt",
+];
+
 const DEFAULT_SETTINGS = {
   showIcon: true,
   showName: true,
   showCount: false,
   bgColor: "orange",
   filterByUser: false,
-  filterByType: false,
-  typeFilter: "*.jpg,*.png",
   showVideoInside: false,
+  hiddenTypes: [], // empty array = all types visible by default
 };
 
 export default function AttachmentSettingsModal() {
@@ -94,6 +114,15 @@ export default function AttachmentSettingsModal() {
       ...prev,
       [key]: value,
     }));
+  };
+
+  const toggleType = (ext) => {
+    setSettings((prev) => {
+      const hidden = prev.hiddenTypes.includes(ext)
+        ? prev.hiddenTypes.filter((t) => t !== ext)
+        : [...prev.hiddenTypes, ext];
+      return { ...prev, hiddenTypes: hidden };
+    });
   };
 
   const handleSave = async () => {
@@ -240,21 +269,17 @@ export default function AttachmentSettingsModal() {
               />
             </div>
 
-            {settings.filterByType && (
-              <div className="mt-3 ml-6">
-                <input
-                  type="text"
-                  value={settings.typeFilter}
-                  onChange={(e) => update("typeFilter", e.target.value)}
-                  placeholder="*.jpg,*.png"
-                  className="w-full bg-[#2c3540] border border-white/10 rounded px-3 py-2 text-xs"
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {FILE_TYPES.map((ext) => (
+                <Checkbox
+                  key={ext}
+                  id={`type-${ext}`}
+                  checked={!settings.hiddenTypes.includes(ext)}
+                  onChange={() => toggleType(ext)}
+                  label={`.${ext}`}
                 />
-
-                <p className="text-[10px] text-gray-500 mt-1">
-                  Example: *.jpg,*.png
-                </p>
-              </div>
-            )}
+              ))}
+            </div>
           </section>
 
           {/* Inside card */}
