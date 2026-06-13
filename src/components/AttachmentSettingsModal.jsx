@@ -76,7 +76,6 @@ const DEFAULT_SETTINGS = {
   showCount: false,
   bgColor: "orange",
   filterByUser: false,
-  showVideoInside: false,
   hiddenTypes: [], // empty array = all types visible by default
 };
 
@@ -260,14 +259,14 @@ export default function AttachmentSettingsModal() {
                 onChange={(v) => update("filterByUser", v)}
                 label="Show only on cards assigned to the current user"
               />
-
-              <Checkbox
-                id="filterByType"
-                checked={settings.filterByType}
-                onChange={(v) => update("filterByType", v)}
-                label="Filter what attachments are visible"
-              />
             </div>
+          </section>
+
+          {/* Inside card */}
+          <section>
+            <h3 className="text-xs font-semibold text-gray-400 mb-3">
+              Filter what attachments are visible
+            </h3>
 
             <div className="mt-3 grid grid-cols-3 gap-2">
               {FILE_TYPES.map((ext) => (
@@ -280,20 +279,6 @@ export default function AttachmentSettingsModal() {
                 />
               ))}
             </div>
-          </section>
-
-          {/* Inside card */}
-          <section>
-            <h3 className="text-xs font-semibold text-gray-400 mb-3">
-              Inside the card
-            </h3>
-
-            <Checkbox
-              id="showVideoInside"
-              checked={settings.showVideoInside}
-              onChange={(v) => update("showVideoInside", v)}
-              label="Show video attachments"
-            />
           </section>
         </div>
 
