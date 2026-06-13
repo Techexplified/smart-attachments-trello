@@ -23,12 +23,7 @@ export default function CardBadge() {
     });
   }, []);
 
-  const visibleAttachments = attachments.filter((att) => {
-    const ext = att.name.split(".").pop().toLowerCase();
-    return !(settings?.hiddenTypes || []).includes(ext);
-  });
-
-  if (!settings || visibleAttachments.length === 0) return null;
+  if (!settings || attachments.length === 0) return null;
 
   const COLOR_MAP = {
     blue: "#0079BF",
@@ -44,6 +39,16 @@ export default function CardBadge() {
   const showIcon = settings.showIcon !== false;
   const showName = settings.showName !== false;
   const showCount = settings.showCount === true;
+
+  // Only show file types that haven't been hidden in the settings.
+  // By default (hiddenTypes empty/undefined) every file type is visible.
+  const hiddenTypes = settings.hiddenTypes || [];
+  const visibleAttachments = attachments.filter((att) => {
+    const ext = (att.name.split(".").pop() || "").toLowerCase();
+    return !hiddenTypes.includes(ext);
+  });
+
+  if (visibleAttachments.length === 0) return null;
 
   return (
     <div className="flex flex-wrap gap-1 p-1">
