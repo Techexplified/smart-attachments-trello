@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AttachmentSettingsModal from "./components/AttachmentSettingsModal";
 import CardBadge from "./components/CardBadge";
 import CardDetailSection from "./components/CardDetailSection";
+import AddAttachmentPopup from "./components/AddAttachmentPopup";
 
 // Trello Power-Up initializer
 // The Trello.initialize() call must be in index.html or main.jsx
@@ -23,6 +24,7 @@ export default function App() {
   if (view === "settings") return <AttachmentSettingsModal />;
   if (view === "card-badge") return <CardBadge />;
   if (view === "card-detail") return <CardDetailSection />;
+  if (view === "add-attachment") return <AddAttachmentPopup />;
 
   return (
     <div className="flex items-center justify-center h-screen bg-[#1d2125] text-white">
