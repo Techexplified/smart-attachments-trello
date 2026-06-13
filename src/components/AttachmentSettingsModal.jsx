@@ -2,13 +2,41 @@ import { useState, useEffect } from "react";
 import { Paperclip, RotateCcw, Save } from "lucide-react";
 
 const COLORS = [
-  { name: "blue", hex: "#0079BF" },
-  { name: "green", hex: "#61BD4F" },
-  { name: "orange", hex: "#FF9F1A" },
-  { name: "purple", hex: "#C377E0" },
-  { name: "teal", hex: "#00C2E0" },
-  { name: "red", hex: "#EB5A46" },
-  { name: "gray", hex: "#838C91" },
+  {
+    name: "blue",
+    bg: "#1D7AFC33",
+    text: "#579DFF",
+  },
+  {
+    name: "green",
+    bg: "#216E4E",
+    text: "#A6F4C5",
+  },
+  {
+    name: "orange",
+    bg: "#A54800",
+    text: "#FFD5B8",
+  },
+  {
+    name: "purple",
+    bg: "#5E4DB2",
+    text: "#DFC0FF",
+  },
+  {
+    name: "teal",
+    bg: "#206A83",
+    text: "#9DD9EE",
+  },
+  {
+    name: "red",
+    bg: "#AE2E24",
+    text: "#FFD5D2",
+  },
+  {
+    name: "gray",
+    bg: "#596773",
+    text: "#DEE4EA",
+  },
 ];
 
 const DEFAULT_SETTINGS = {
@@ -87,7 +115,8 @@ export default function AttachmentSettingsModal() {
   };
 
   const selectedColor =
-    COLORS.find((c) => c.name === settings.bgColor)?.hex || "#FF9F1A";
+    COLORS.find((c) => c.name === settings.bgColor) ||
+    COLORS.find((c) => c.name === "orange");
 
   return (
     <div className="w-full bg-[#1d2125] text-gray-100 font-sans">
@@ -166,7 +195,7 @@ export default function AttachmentSettingsModal() {
                     key={c.name}
                     onClick={() => update("bgColor", c.name)}
                     style={{
-                      backgroundColor: c.hex,
+                      backgroundColor: c.bg,
                     }}
                     className={`w-6 h-6 rounded transition-all ${
                       settings.bgColor === c.name
@@ -243,8 +272,8 @@ export default function AttachmentSettingsModal() {
                 <div
                   className="flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded w-fit"
                   style={{
-                    backgroundColor: selectedColor + "33",
-                    color: selectedColor,
+                    backgroundColor: selectedColor.bg,
+                    color: selectedColor.text,
                   }}
                 >
                   {settings.showIcon && <Paperclip size={11} />}
