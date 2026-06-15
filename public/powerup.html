@@ -41,14 +41,30 @@
         // },
 
         "card-badges": async (t) => {
-          const [card, settings] = await Promise.all([
-            t.card("attachments"),
+          const [card, settings, currentMember] = await Promise.all([
+            t.card("attachments", "members"),
             t.get("board", "shared", "smartAttachmentSettings"),
+            t.member("id"),
           ]);
 
           const attachments = card.attachments || [];
+          const cardMembers = card.members || [];
           const hiddenTypes = settings?.hiddenTypes || [];
           const badgeColor = settings?.bgColor || "orange";
+
+          if (settings?.showOnlyUnassignedCards && cardMembers.length > 0) {
+            return [];
+          }
+
+          if (settings?.showOnlyCurrentUserCards) {
+            const assignedToCurrentUser = cardMembers.some(
+              (member) => member.id === currentMember.id,
+            );
+
+            if (!assignedToCurrentUser) {
+              return [];
+            }
+          }
 
           const visibleAttachments = attachments.filter((att) => {
             const ext = att.name.split(".").pop().toLowerCase();
