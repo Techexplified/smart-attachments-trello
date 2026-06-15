@@ -257,6 +257,13 @@ export default function AttachmentSettingsModal() {
                 id="filterByUser"
                 checked={settings.filterByUser}
                 onChange={(v) => update("filterByUser", v)}
+                label="Show only on unassigned cards"
+              />
+
+              <Checkbox
+                id="filterByUser"
+                checked={settings.filterByUser}
+                onChange={(v) => update("filterByUser", v)}
                 label="Show only on cards assigned to the current user"
               />
             </div>
