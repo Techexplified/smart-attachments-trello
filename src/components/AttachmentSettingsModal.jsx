@@ -75,7 +75,8 @@ const DEFAULT_SETTINGS = {
   showName: true,
   showCount: false,
   bgColor: "orange",
-  filterByUser: false,
+  showOnlyUnassignedCards: false,
+  showOnlyCurrentUserCards: false,
   hiddenTypes: [], // empty array = all types visible by default
 };
 
@@ -254,16 +255,32 @@ export default function AttachmentSettingsModal() {
 
             <div className="space-y-2">
               <Checkbox
-                id="filterByUser"
-                checked={settings.filterByUser}
-                onChange={(v) => update("filterByUser", v)}
+                id="showOnlyUnassignedCards"
+                checked={settings.showOnlyUnassignedCards}
+                onChange={(v) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    showOnlyUnassignedCards: v,
+                    showOnlyCurrentUserCards: v
+                      ? false
+                      : prev.showOnlyCurrentUserCards,
+                  }))
+                }
                 label="Show only on unassigned cards"
               />
 
               <Checkbox
-                id="filterByUser"
-                checked={settings.filterByUser}
-                onChange={(v) => update("filterByUser", v)}
+                id="showOnlyCurrentUserCards"
+                checked={settings.showOnlyCurrentUserCards}
+                onChange={(v) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    showOnlyCurrentUserCards: v,
+                    showOnlyUnassignedCards: v
+                      ? false
+                      : prev.showOnlyUnassignedCards,
+                  }))
+                }
                 label="Show only on cards assigned to the current user"
               />
             </div>
