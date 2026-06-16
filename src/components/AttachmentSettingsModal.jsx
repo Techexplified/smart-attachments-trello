@@ -253,25 +253,6 @@ export default function AttachmentSettingsModal() {
               />
             </div>
           </section>
-
-          {/* Inside card */}
-          <section>
-            <h3 className="text-xs font-semibold text-gray-400 mb-3">
-              Hide File Types on Cards
-            </h3>
-
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {FILE_TYPES.map((ext) => (
-                <Checkbox
-                  key={ext}
-                  id={`type-${ext}`}
-                  checked={settings.hiddenTypes.includes(ext)}
-                  onChange={() => toggleType(ext)}
-                  label={`.${ext}`}
-                />
-              ))}
-            </div>
-          </section>
         </div>
 
         {/* Preview */}
@@ -295,6 +276,25 @@ export default function AttachmentSettingsModal() {
               This is how it will look on your board.
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Inside card */}
+      <div>
+        <h3 className="text-xs font-semibold text-gray-400 mb-3">
+          Hide File Types on Cards
+        </h3>
+
+        <div className="mt-3 grid grid-cols-6 gap-2">
+          {FILE_TYPES.map((ext) => (
+            <Checkbox
+              key={ext}
+              id={`type-${ext}`}
+              checked={settings.hiddenTypes.includes(ext)}
+              onChange={() => toggleType(ext)}
+              label={`.${ext}`}
+            />
+          ))}
         </div>
       </div>
 
