@@ -144,11 +144,11 @@ export default function AttachmentSettingsModal() {
     setSettings(DEFAULT_SETTINGS);
   };
 
-  const handleClose = () => {
-    if (t) {
-      t.closePopup();
-    }
-  };
+  // const handleClose = () => {
+  //   if (t) {
+  //     t.closePopup();
+  //   }
+  // };
 
   const selectedColor =
     COLORS.find((c) => c.name === settings.bgColor) ||
@@ -309,12 +309,12 @@ export default function AttachmentSettingsModal() {
         </button>
 
         <div className="flex gap-2">
-          <button
+          {/* <button
             onClick={handleClose}
             className="px-3 py-1.5 text-xs bg-white/5 hover:bg-white/10 rounded"
           >
             Cancel
-          </button>
+          </button> */}
 
           <button
             onClick={handleSave}
