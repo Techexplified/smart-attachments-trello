@@ -71,9 +71,6 @@ const FILE_TYPES = [
 ];
 
 const DEFAULT_SETTINGS = {
-  showIcon: true,
-  showName: true,
-  showCount: false,
   bgColor: "orange",
   showOnlyUnassignedCards: false,
   showOnlyCurrentUserCards: false,
@@ -181,35 +178,6 @@ export default function AttachmentSettingsModal() {
               Front of the card
             </h3>
 
-            <div className="space-y-2">
-              <Checkbox
-                id="showIcon"
-                checked={settings.showIcon}
-                onChange={(v) => update("showIcon", v)}
-                label={
-                  <span className="flex items-center gap-1.5">
-                    Show
-                    <Paperclip size={12} className="text-gray-400" />
-                    icon
-                  </span>
-                }
-              />
-
-              <Checkbox
-                id="showName"
-                checked={settings.showName}
-                onChange={(v) => update("showName", v)}
-                label="Show attachment name"
-              />
-
-              <Checkbox
-                id="showCount"
-                checked={settings.showCount}
-                onChange={(v) => update("showCount", v)}
-                label="Show number of attachments"
-              />
-            </div>
-
             {/* Color */}
             <div className="mt-5">
               <div className="flex items-center gap-3 mb-3">
@@ -312,27 +280,15 @@ export default function AttachmentSettingsModal() {
             <p className="text-xs text-gray-400 mb-3">Preview</p>
 
             <div className="border border-white/10 rounded p-3">
-              {settings.showIcon || settings.showName ? (
-                <div
-                  className="flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded w-fit"
-                  style={{
-                    backgroundColor: selectedColor.bg,
-                    color: selectedColor.text,
-                  }}
-                >
-                  {settings.showIcon && <Paperclip size={11} />}
-
-                  {settings.showName && <span>Product-Screenshot.png</span>}
-
-                  {settings.showCount && (
-                    <span className="bg-white/20 rounded px-1">2</span>
-                  )}
-                </div>
-              ) : (
-                <span className="text-xs text-gray-500 italic">
-                  Nothing to show
-                </span>
-              )}
+              <div
+                className="flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded w-fit"
+                style={{
+                  backgroundColor: selectedColor.bg,
+                  color: selectedColor.text,
+                }}
+              >
+                <span>Product-Screenshot.png</span>
+              </div>
             </div>
 
             <p className="text-[10px] text-gray-500 mt-3">
