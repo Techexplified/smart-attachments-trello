@@ -280,7 +280,7 @@ export default function AttachmentSettingsModal() {
       </div>
 
       {/* Inside card */}
-      <div>
+      <div className=" p-5">
         <h3 className="text-xs font-semibold text-gray-400 mb-3">
           Hide File Types on Cards
         </h3>
