@@ -257,7 +257,7 @@ export default function AttachmentSettingsModal() {
           {/* Inside card */}
           <section>
             <h3 className="text-xs font-semibold text-gray-400 mb-3">
-              Filter what attachments are visible
+              Hide File Types on Cards
             </h3>
 
             <div className="mt-3 grid grid-cols-3 gap-2">
@@ -265,7 +265,7 @@ export default function AttachmentSettingsModal() {
                 <Checkbox
                   key={ext}
                   id={`type-${ext}`}
-                  checked={!settings.hiddenTypes.includes(ext)}
+                  checked={settings.hiddenTypes.includes(ext)}
                   onChange={() => toggleType(ext)}
                   label={`.${ext}`}
                 />
